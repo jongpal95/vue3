@@ -1,0 +1,40 @@
+### Single File Component [https://www.gymcoding.co/1c25d3fc-fc24-4422-aa61-ddad7f5714be/]
+: template, script, style 세 태그를 가진 하나의 vue 파일을 말함
+
+
+## <tempalte>
+: vue 파일 내 최대 하나의 블록
+
+
+## <script>
+: vue 파일 내 최대 하나의 블록
+
+## <script setup>
+: vue 파일 내 최대 하나의 블록
+  사전에 처리 되어 컴포넌트의 setup함수로 사용됨. 즉 컴포넌트의 각 인스턴스에 대해 실행됨
+
+* <script>블록과 <script setup>블록은 각각 공존할 수 있음.
+
+
+## <style>
+: vue 파일 내 여러 블록이 포함될 수 있음
+
+
+## custom block
+
+## 전처리기
+: <script>의 lang속성을 사용하여 전처리기 언어를 선언할 수 있음. 일반적으로 type script 사용
+  lang속성은 모든 블록에 적용 가능
+
+
+## CSS 기능
+  - scoped CSS : <style>에 scoped속성이 있는 경우 해당 css는 현재 컴포넌트의 요소에만 적용됨을 의미
+                 postCSS사용하여 적용되는 원리
+  
+  - module : <style module>은 css모듈로 컴파일 되고 정의한 css클래스가 $style 내장 객체의 속성으로 포함됨
+             useCssModule()함수로 $style 객체를 가져올 수 있음
+
+             * 모듈 속성의 값을 지정하여 키 이름을 커스텀할 수 있음 / 내장 객체가 아닌 커스텀한 이름으로 객체화
+             ex> module="custom"
+
+  - v-bind in CSS : v-bind 디렉티브 사요으로 css값을 동적으로 사용할 수 있음
