@@ -1,0 +1,17 @@
+### Computed Properties/계산된 속성 [https://www.gymcoding.co/afe2c01b-0d55-4a55-938a-abe79cf959aa/]
+: 템플릿 표현식{{}} 내 코드가 길어질 경우 또는 이러한 경우의 코드를 여러곳에서 반복적으로 사용할 경우 가독성 하향/비효율적
+  이럴 때 사용하는 것이 Computed Properties
+
+
+## computed()
+: 해당 메서드 사용으로 읽기전용(default)으로 속성값을 사용할 수 있음
+
+
+## Computed vs Method
+: Computed가 성능면에서 비용이 더 적게 소모됨.
+  메서드 내에서 계산된 값이 캐시(계산하면 값을 가지고 있다가 반환)됨 / 이러한 캐시가 다시 계산되는 시점은 반응형 데이터가 변경될 때
+
+
+## Writable Computed
+: 기본적으로 getter전용, 계산된 속성에 새 값을 할당하려고 하면 런타임 경고가 표시됨
+  새로운 계산된 속성이 필요한 경우 getter(get())/setter(set())를 모두 제공하여 속성을 만들 수 있음

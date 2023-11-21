@@ -1,0 +1,49 @@
+### Watch, WatchEffect [https://www.gymcoding.co/9c986cce-eff2-4a69-84f5-1d26a92680fb/]
+
+## Watch
+: 반응형 상태가 변경됨을 감지하여 DOM을 변경하거나 비동기 작업을 해서 다른 상태를 변경할 떄 유용한 CompsitionAPI의 watch()
+  명시적 / 감시할 대상을 직접적으로 명시
+  ex> watch(감지할대상, (새로운 값, 이전 값) => {
+    (수행할 작업);
+  });
+
+# Watch Source Type
+: 첫 번째 매개변수(감지할 대상)은 다양한 타입이 될 수 있음
+
+  ref
+  reactive
+  computed
+  getter function => getter 함수로 받은 대상(object, property, value,,,)의 값이 바뀌었는지만 감시
+  array
+
+# deep option
+: 반응형 객체(Object)를 직접 watch()하면 깊은 감시자가 생성됨. 즉 속성 뿐만 아니라 모든 중첩된 속성에도 트리거 됨
+
+# immediate 즉시실행 옵션
+: watch함수의 세번째 매개변수로 immediate 옵션을 사용하여 최초에 즉시실행할 수 있음
+  ex> watch(감지할대상, (새로운 값, 이전 값) => {
+    (수행할 작업);
+  },
+  {
+    immediate: true
+  });
+
+# computed vs watch 사용
+  - Vue 인스턴스의 상태(ref, reactive 변수)의 종속관게를 자동으로 세팅하고자 할 때 => computed()
+  - Vue 인스턴스의 상태(ref, reactive 변수)의 변경 시점에 특정 액션(api call, push route,,,)을 취하고자 할 때 => watch()
+
+
+## WatchEffect
+: callback function 내 반응성 데이터에 변화가 감지되면 자동으로 반응하여 실행, 컴포넌트 생성될 때 즉시 실행(최초 1회 즉시실행)
+  callback function 내에서 사용한 api를 감시함 / Watch에 비해 비교적 덜 명시적
+
+
+## Watch vs WatchEffect
+: 둘 다 관련 작업을 반응적으로 수행할 수 있게 해주는 api
+  반응형 데이터를 추적하는 방식에서 차이가 있음
+  
+  - watch => 명시된 소스만 추적함, callback 내에서 액세스한 항목은 추적하지 않음. callback은 실제 소스가 변경된 경우에만 트리거 됨.
+             콜백이 실행되어야 하는 시기를 보다 정확히 제어할 수 있음
+  - watchEffect => 동기 실행 중 액세스되는 모든 반응 속성을 자동으로 추적함.
+
+

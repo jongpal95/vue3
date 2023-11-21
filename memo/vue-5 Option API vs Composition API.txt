@@ -1,0 +1,28 @@
+### Options API vs Composition API [https://gymcoding.co/35f5a5fb-5532-4cb0-ae42-280064cdf4c5/]
+
+* Vue2 : Options API <-> Vue3 : Composition API
+* Vue3에서도 Options API를 지원
+
+
+## OptionsAPI
+
+## CompositionAPI
+: option(data, methods,,,)을 선언하는 대신 가져온 함수(ref, onMounted,,,)를 사용하여 Vue 컴포너트를 작성할 수 있는 API 세트
+  CompositionAPI를 기반으로 개발 권장
+
+
+# 왜?
+: 논리적 관심사가 분리되어 있는 OptionsAPI
+  - CompositionAPI 사용으로 논리적 관심사가 같은 코드를 Grouping
+  - Composable 함수를 사용하여 재사용성 향상
+
+
+## OptionsAPI와 관계
+  - 기존 모든 사용사례 커버가 가능한가?
+    : 필요한 경우 OptionsAPI를 사용해야 할 수 있음
+
+  - 두 방식을 함께 사용할수 있는가?
+    : OptionsAPI 구성 요소의 setup() 옵션을 통해 CompositionAPI사용 가능 / 그러나 코드베이스가 OptionsAPI일 경우에만
+
+
+* [https://vuejs.org/guide/introduction.html/] with CompositionAPI toggled

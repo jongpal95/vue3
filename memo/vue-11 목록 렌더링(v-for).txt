@@ -1,0 +1,7 @@
+### 목록 렌더링(v-for) [https://www.gymcoding.co/44272c0e-bbaa-4fef-bb47-a5f945bdc83d/]
+: v-for 디렉티브 사용으로 배열인 목록을 렌더링 할 수 있음(요소, 인덱스)
+  항목을 나열할 때 각 :key 속성에는 고유한 값을 지정해야함 (vue2.2.0부터 필수!)
+
+
+## v-for 객체
+: 객체의 속성을 반복할 수 있음(index-key-value)

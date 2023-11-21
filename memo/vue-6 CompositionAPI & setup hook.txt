@@ -1,0 +1,26 @@
+### CompositionAPI [https://www.gymcoding.co/dfda92b6-e4b0-41fc-bdcb-848ed292cb66/]
+: CompositionAPI는 옵션(data, methods,,,)을 선언하는 대신 가져온 함수(ref, onMounted,,,)를 사용하여 Vue 컴포넌트를 작성할 수 있는 API 세트를 말함
+
+
+- 반응형 API(Reactivity API)
+: ref(), reactive()와 같은 API를 사용하여 반응 상태(reactive state), 계산된 상태(computed state), 감시자(watcher)와 같은 것들을 만들 수 있음
+
+- 라이프 사이클 훅(Lifecycle Hook)
+: onMounted(), onUnMounted()와 같은 API를 사용하여 프로그래밍 방식으로 컴포넌트 라이프 사이클에 접근할 수 있음
+
+- 종속성 주입(Dependency Injection)
+: provide(), inject()는 반응형 API를 사용하는 동안 Vue의 의존성 주입 시스템을 활용할 수 있게 해줌
+
+
+### setup() hook [https://www.gymcoding.co/ad02aa20-2ccf-4a51-a495-ecd98a543024/]
+: CompositionAPI 사용을 위한 진입점 역할, 컴포넌트 인스턴스가 생성되기 전에 실행됨
+  
+  1. 기본사용
+  : 반응형 API를 사용하여 반응형 상태를 선언, setup()에서 객체를 반환하여 <template>에 노출할 수 있음
+    (반환된 객체의 속성은 구성요소 인스턴스에서도 사용할 수 있음)
+
+  2. props 접근
+  : setup()함수의 첫 번째 매갲변수, props는 반응형 객체임
+
+  3. context
+  : 두 번째 매개변수, 함수 내에서 유용하게 사용할 수 있는 속성을 갖고 있음

@@ -1,0 +1,39 @@
+### 이벤트 처리 [https://www.gymcoding.co/4f119004-3f28-4076-86cd-11c1f9e464c9/]
+: v-on 디렉티브 사용, 단축표현 ex> @:click="{method}"
+  $event 키워드 사용으로 이벤트 객체 접근 가능
+
+
+## 이벤트 수식어
+: 이벤트를 조작할 때 이벤트 내부에서 메소드의 호출(ex> event.preventDefault(), event.stopPropagation(),,,)은 비즈니스 로직 외 매우 비효율적임
+  이러한 문제를 해결하기 위해 v-on 이벤트에 다양한 수식어(Modifiers)를 제공
+
+  .stop = e.stopPropagation() / 이벤트 전파 차단 - 관련 엘리먼트의 동일한 동작 수행 시 해당 이벤트가 실행되지 않도록 전파를 차단하는 것
+  .prevent = e.preventDefault() / 태그가 가진 기본기능 차단
+  .capture = 캡처모드 사용 시 이벤트 리스너 사용
+  .self = 오로지 자기 자신만 호출 가능, 즉 타깃 요소가 self일 때 발동
+  .once = 해당 이벤트는 한 번만 실행됨
+  .passive = 모바일 장치 성능 개선을 위해 터치 이벤트 리스너와 함께 사용됨
+
+* 이벤트는 캡쳐링으로 시작해서 버블리으로 마무리되는 흐름임
+
+
+## 키 수식어
+: 특정 키를 확인하는 경우 등 키보드 이벤트를 수신하는 경우
+
+  .enter
+  .tab
+  .delete (”Delete”와 “Backspace” 키 모두를 수신합니다.)
+  .esc
+  .space
+  .up
+  .down
+  .left
+  .right
+
+
+## 시스템 키 수식어
+
+  .ctrl
+  .alt
+  .shift
+  .meta(Mac = command key, Window = window key)

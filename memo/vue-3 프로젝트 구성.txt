@@ -1,0 +1,32 @@
+### 프로젝트 구성 [https://www.gymcoding.co/d871ce77-4739-4105-8d57-8b2e41250570/]
+
+
+## Vue 설치 방법
+1. CDN
+2. npm import
+3. official CLI를 사용하여 프로젝트를 scaffold하고, 최신 프론트엔드 워크플로우를 위한 batteries-included build를 제공
+    * scaffold : 개발을 용이하게 시작할 수 있는 발판을 제공해주는 것
+    * batteries=included: 외부 라이브러리를 더하지 않아도 기본적으로 제공하는 표준 라이브러리만으로도 시작하는데 문제 없다라는 의미
+
+# CDN
+: 프로토타이핑 또는 학습이 목적일 경우
+    <script src="https://unpkg.com/vue@next"></script>
+    or 
+    <script src="https://unpkg.com/vue@3.2.31"></script>
+
+# npm import
+: 대규모 애플리케이션을 구축할 때 권장, Webpack 또는 Browserify와 같은 모듈 번들러와 잘 작동함
+    npm install vue@next
+
+# Vue CLI
+: 웹팩 기반 빌드도구. 하지만 현재 Vue CLI는 유지관리 모드 -> 특정 웹팩 기능에 의존하지 않는 한 Vite로 새 프로젝트를 시작하는것이 좋음
+  (Vue CLI를 사용하기 위해서는 @vue/cli v4.5 이상 설치해야함)
+    npm install -g @vue/cli
+
+# Vite
+: Vue SFC를 지원하고 가볍고 빠른 빌드 도구(Evan You). 개발 서버 구동이 매우 빠르고 소스 코드 변경 시 변경된 모듈만 교체함
+    npm init vue@latest
+    cd {product name}
+    npm install
+    npm run dev
+    > 위 명령은 공식 Vue 프로젝트 스캐폴딩 도구인 create-vue를 설치하고 실행함

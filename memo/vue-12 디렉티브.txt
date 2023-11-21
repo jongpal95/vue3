@@ -1,0 +1,33 @@
+### 디렉티브 [https://www.gymcoding.co/18b8a901-ef78-4648-82ae-3f3ddf991ce4/]
+: v- 접두사가 있는 특수 속성
+  기능상에서 중요한 역할인 컴포넌트(또는 DOM)에게 지시를 해주는 지시문
+  여러 내장 디렉티브 제공
+    v-text: 엘리먼트의 textContent를 업데이트, 문자열로 인식 / 일부 업데이트할 경우 mustache interpolations를 사용
+    v-html: 문자열을 html 태그로 인식
+    v-show
+    v-if
+    v-else
+    v-else-if
+    v-for
+    v-on (단축표기 @)
+    v-bind (단축표기 :)
+    v-model
+    v-slot (단축표기 #)
+    v-pre
+    v-once: 엘리먼트와 컴포넌트를 한번만 렌더링, 이후 재렌더링할 때 모든 엘리먼트/컴포넌트를 정적인 컨텐츠로 처리함(업데이트 성능 최적화)
+    v-cloak: 연결된 컴포넌트 인스턴스가 컴파일을 완료할 때까지 엘리먼트에 남아있음, 준비가 끝나면 자동으로 제거됨(로딩)
+    v-memo (v3.2+): (최근에 추가됨) 성능과 관련, v-once의 업그레이드, 배열로 전달한 반응형 데이터가 변경이 됐을 때만 업데이트(연관된 다른 속성들도 한번에 같이 업데이트)
+                    성능 최적화가 필요한 경우
+  
+
+## 디렉티브 구성
+: 
+  Name:Argument.Modifiers="Value"
+  
+  - 디렉티브(Name)
+  - 전달인자(Argument)
+  - 수식어(Modifiers)
+  - 값(Value)
+
+
+## 커스텀 디렉티브
