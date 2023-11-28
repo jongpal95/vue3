@@ -11,6 +11,8 @@ import App from './App.vue';
 
 const app = createApp(App);
 
+app.provide('app-message', 'app message~!~!');
+
 // app.component('AppCard', AppCard);
 app.mount('#app');
 

@@ -1,0 +1,47 @@
+### Provide/Inject [https://www.gymcoding.co/f8b7ef5d-7112-4139-ab59-b376711163b2/]
+: Prop Drilling을 해결하기 위해 사용
+  계층 구조의 깊이에 상관없이 모든 자식 컴포넌트에 데이터를 전달할 수 있음
+
+* Prop Drilling : 단순히 하위 컴포넌트에 전달하는 용도로만 쓰이느 과정
+
+
+## Provide
+: 하위 컴포넌트 항목에 데이터를 제공하려면 provider역할을 하는 상위 컴포넌트의 setup함수 내부에서 provide() 함수를 사용하여 데이터를 제공할 수 있음
+  객체구조로 value를 설정할 수 있음
+
+  - 첫 번째 파라미터 : 키, 문자열 또는 Symbol
+  - 두 번째 파라미터 : 값, refs와 같은 반응형 데이터를 포함하며 모든 타입 가능
+
+  ex> 
+      setup() {
+        provide('key', value);
+      }
+
+## Inject
+: 상위 컴포넌트에서 provide()를 사용해 주입한 값을 가져올 때는 setup함수 내부에서 inject()를 사용
+  구조분해 할당으로 원하는 값만 추출할 수 있음
+
+  - 첫 번째 파라미터 : 주입한 키 값
+  - 첫 번째 파라미터 : 값이 넘어오지 않을 경우를 대비하여 기본값을 지정
+
+  ex> 
+      setup() {
+        const injectValue = inject('key', 'default message');
+      }
+
+
+## Reactivity
+: 반응형 데이터를 제공,주입할 때 가능한 모든 변경은 provider 내부에서 하는 것을 권장(유지관리)
+  데이터를 변경하는 함수를 함께 제공
+  그리고 주입된 하위 컴포넌트에서 제공된 값을 변경할 수 없도록 하려면 readonly() 함수를 사용할 수 있음
+  
+  ex>
+      setup() {
+        const valueFunction = ();
+
+        provide('key', {valueKey1 : readonly(value), valueFunction});
+      }
+
+
+## App-level Provide
+: App컴포넌트는 모든 자식 컴포넌트의 부모 컴포넌트임, 즉 App-level에서 데이터를 제공하게 되면 모든 컴포넌트에서 사용할 수 있음
