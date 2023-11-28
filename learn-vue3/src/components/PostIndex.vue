@@ -17,13 +17,13 @@
 				</div>
 				<!-- use v-for directive -->
 				<div class="col col-4" v-for="post in posts" :key="post.id">
-					<AppCard
+					<PostItem
 						:type="post.type"
 						:title="post.title"
 						:content="post.content"
 						:is-like="post.isLike"
 						@toggle-like="post.isLike = !post.isLike"
-					></AppCard>
+					></PostItem>
 					<!-- <button @click="post.isLike = !post.isLike">toggle</button> -->
 				</div>
 				<!-- <div class="col col-4">
@@ -63,7 +63,7 @@
 
 <script>
 import { reactive, ref } from 'vue';
-import AppCard from './AppCard.vue';
+import PostItem from './PostItem.vue';
 import PostCreate from './PostCreate.vue';
 import LabelInput from './LabelInput.vue';
 import LabelTitle from './LabelTitle.vue';
@@ -71,7 +71,7 @@ import UserName from './UserName.vue';
 
 export default {
 	components: {
-		AppCard,
+		PostItem,
 		PostCreate,
 		LabelInput,
 		LabelTitle,

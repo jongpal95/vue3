@@ -1,0 +1,70 @@
+s### Slots [https://www.gymcoding.co/f72f67bf-01b4-49e7-9358-e12cc3a2beee/]
+: html요소와 마찬가지로 내가 만든 컴포넌트에 컨텐츠를 전달할 수 있도록 활용
+  컨텐츠를 표시하고 싶은 위치에 slot요소를 작성
+  컨텐츠는 문자열뿐만 아니라 html요소, 또 다른 컴포넌트가 될 수도 있음
+
+  ex> 
+      <!-- in MyComponent.vue -->
+      <template>
+        <button>
+          <slot></slot>
+        </button>
+      </template>
+
+      <!-- in ParentComponent -->
+      <MyComponent>
+        "Contents"
+      </MyComponent>
+
+      부모 컴포넌트에서 작성한 컨텐츠로 slot요소가 replace
+
+## Fallback Content
+: 상위 컴포넌트에서 슬롯 컨텐츠가 제공되지 않을 떄 슬롯에 대한 폴백(기본 컨텐츠)을 지정할 수 있음
+
+
+## Named Slots
+: slot요소에 이름을 부여하여 여러 개를 정의할 수 있음
+  name 속성을 부여하여 특정 슬롯 컨텐츠가 렌더링 되어야 할 위치를 설정할 수 있음
+  name이 없는 slot의 이름은 암시적으로 'default'
+
+
+## v-slot
+: v-slot 디렉티브로 컨텐츠로 사용할 slot의 name을 할당할 수 있음, # 단축표현으로 사용가능
+  default 슬롯의 경우 암시적으로 처리할 수 있음
+
+  ex>
+      <template v-slot:header>"Header"</template>
+      <template v-slot:default>"Body"</template>
+
+      단축표현
+      <template #header>"Header"</template>
+      <template #default>"Body"</template>
+
+      default slot
+      <template #header>"Header"</template>
+      "Body"
+
+* v-slot, v-bind, v-on의 전달인자는 동적으로 변경할 수 있음(ex> 반응형 객체의 값)
+
+
+## Render scope
+: slot content는 상위 컴포넌트에 정의되어 있으므로 하위 컴포넌트의 영역에는 접근(컴포넌트 안에 있는 데이터를 사용)할 수 없음
+
+## Scoped Slots
+: Render Scoped에서 언급한것처럼 슬롯 컨텐츠는 자식 컴포넌트의 데이터에 접근할 수 없음,
+  그러나 자식 컴포넌트에서 slot요소를 사용할 때 props를 전달하는 것처럼 속성을 슬롯 컴텐츠에 전달할 수 있음
+
+  ex>
+      <template>
+        <div>
+          <slot :text=message" :count="count"></slot>
+        </div>
+      </template>
+
+
+## $slot
+: 내장 객체를 사용하여 렌더링 조건을 설정할 수 있음
+
+## context.slot
+
+      
