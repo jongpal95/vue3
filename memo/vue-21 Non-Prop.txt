@@ -1,0 +1,42 @@
+### Non-Prop 속성 [https://www.gymcoding.co/338567c6-e609-4e79-b798-22b6eaae6cb9/]
+: props, event에 명시적으로 선언되지 않은 속성 또는 이벤트
+  ex> class, style, id,,,
+  Non-Prop속성은 컴포넌트의 root component에 상속됨
+
+## 속성 상속
+: 컴포넌트가 단일 루트 요소로 구성되어 있으면 fallthrough 속성은 루트 요소의 속성에 자동으로 추가 됨
+  > 단일이 아닐 경우에도 루트 요소에 자동으로 상속
+
+## class, style 속성 병합
+: 만약 자식 컴포넌트 루트 요소에 이미 class, style 속성이 정의되어 있으면 부모로 받은 class, style 속성과 병합 됨
+  > 다른 속성들은 덮어쓰기
+
+
+## 속성 상속 비활성화
+: 컴포넌트가 자동으로 Non-Prop속성을 상속하지 않도록 하려면 inheritAttrs: false 옵션을 설정
+
+## $attrs (in context)
+: 내장객체인 $attrs에는 컴포넌트에 선언되지 않은 모든 속성(props, emit,,,)을 포함하고 있음
+  이벤트리스너 같은 경우 함수로 접근할 수 있음
+  케밥케이스 속성의 경우 $attrs['kebab-case']와 같은 형식으로 접근해야함
+
+  ex> v-bind="$attrs"
+
+
+* Fragments
+: 다중 루트 노드 컴포넌트인 Fragments를 공식 지원함
+  하지만 개발자가 속성을 배포(상속)해야 하는 위치를 명시적으로 정의해야 함
+    > Non-Prop 속성은 루트 요소에 자동으로 상속되는데 명시적으로 정의하지 않을 경우 런타임 에러가 출력 됨
+
+  ex>
+      <template>
+        <header>...</header>
+        <main v-bind="$attrs">...</main>
+        <footer>...</footer>
+      </template>
+
+
+* 자동 상속
+: emits에 선언하지 않은 이벤트는 컴포넌트의 루트 요소가 자동으로 상속 받음,
+  이 경우 html에서 사용하는 리스터의 이름과 같을 때 중복하여 이벤트가 실행될 수 있으므로 
+  사용할 이벤트는 꼭 emits에 선언하는 것을 습관화할 것
