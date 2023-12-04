@@ -8,6 +8,7 @@
 
 <script>
 // import AppCard from './components/AppCard.vue';
+import { ref } from 'vue';
 import TheNav from './components/TheNav.vue';
 import TheView from './components/TheView.vue';
 
