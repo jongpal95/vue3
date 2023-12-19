@@ -1,0 +1,81 @@
+### router [https://www.gymcoding.co/477d414d-c745-45db-967f-abaf4a24a641/]
+: url에 따라 표시할 페이지를 매핑해주는 라이브러리
+
+## Vue Router [https://router.vuejs.org/guide/]
+: Vue.js를 이용하여 SPA를 구현할 때 사용하는 공식 라우터
+
+
+1. vue-router 설치
+  > npm install vue-router
+
+2. vue-router config 작성
+  > /src/router/index.js
+
+    const routes = [
+      {
+        path: ,
+        name: ,
+        component: ,
+      },
+    ]
+    -> 렌더링할 경로와 컴포넌트, 이름 등 설정
+
+    export default router;
+    -> 다른 컴포넌트에서 사용할 수 있도록 router 인스턴스 반환
+
+3. vue-router component 사용
+  - <a>대신 <RouterLink to="/"> 사용
+    > to 속성 값으로 이동 경로 부여
+  
+  - <RouterView>
+    > RouterLink로 렌더링한 컴포넌트가 표시될 공간
+  
+  * vuew-router component global declare
+    : root level에 components.d.ts 파일 생성 후,
+      declare module '@vue/runtime-core' {
+        export interface GlobalComponents {
+          RouterLink: typeof import('vue-router')['RouterLink']
+          RouterView: typeof import('vue-router')['RouterView']
+        }
+      }
+      export {}
+
+      위 내용 작성하면 vue-router component를 컴포넌트로 인식함
+
+
+## 동적 라우팅
+: router config에서 세미콜론을 사용, 파라미터로 넘긴 값으로 라우팅 할 수 있음
+  ex> 
+      const routes = [
+        {
+          path: '/path/:id',
+          component: Component,
+        },
+      ]
+
+      -> 세미콜론 뒤에 값을 파라미터로 전달할 수 있음
+  
+  * $route 객체에 query, hash 속성을 사용하여 값을 전달할 수 있음
+    - use query : ?name=value
+    - user hash : #value
+
+
+## router push()
+: push함수 실행으로 페이지 이동이 가능
+
+  * push function parameter
+  ex>
+      1. literal string
+      router.push('/detail');
+
+      2.object - path
+      router.push({path: '/detail'})
+
+      3. object - naming
+      router.push({name: 'detail', params: { info: 'data' }}) => /detail/data
+
+      4. object with query
+      router.push({path: '/detail', query: {info: 'data'}}) => /detail?info=data
+
+      5. object with hash
+      router.push({path: '/detail', hash: '#data'}) => /detail#data

@@ -1,0 +1,74 @@
+### [https://www.gymcoding.co/777f4d5d-5869-4ab8-8246-df49599a1317/]
+
+## 404 page
+: push함수의 파라미터로 전달된 값이 router설정에서 정의한 값과 일치하는게 없을 경우 표시할 페이지
+  일반 파라미터는 슬래쉬('/')로 구분된 url사이의 문자만 일치시킨다.
+
+  ex>
+      {
+        path: '/:pathMatch(.*)*',
+        name: NotFound,
+        component: NotFoundVue
+      }
+
+      * 이 때, $router객체에서 pathMatch값을 살펴보면 '/'로 구분된 문자열 배열인 것을 확인할 수 있음
+
+ 
+ * 특정 문자열 뒤에 정규식을 표현하고 싶은 경우
+ ex>
+      {
+        path: '/user-:afterUser(.*)',
+        component: UserValidationVue
+      }
+
+
+## 중첩 라우팅
+: 페이지 내에서 고정된 영역 외 특정 부분만 렌더링을 해야할 경우, 결과적으로 RouterView내에 중첩된 RouterView를 선언하는 경우
+  children 속성으로 선언하여 사용
+
+  ex> 
+      in router config file
+
+      {
+        path: '/parent',
+        name: 'Parent'
+        component: ParentVue
+        children: [
+          {
+            path: 'child1',  // => /parent/child1
+            name: 'Chil1',
+            component: Child1Vue
+          },
+          {
+            path: 'child2',  // => /parent/child1
+            name: 'Chil2',
+            component: Child2Vue
+          }
+        ]
+      }
+
+      * parent vue 파일에서는 RouterLink로 to 속성값을 이동할 전체 경로(ex> '/parent/child1')를 할당해야 함
+      * 이 때, children 속성에 선언하는 path값은 앞에 슬래쉬('/')를 붙이지 않아야 함, 붙일 경우 parent를 무시하고 절대 경로로 선언 됨
+
+
+## router.replace
+: push()와 같은 역할을 하지만 새로운 히스토리 항목에 추가하지 않는다는 차이점이 있음
+  현재 항목을 대체함
+
+  ex>
+      in <template>
+      <router-link :to="/somepage" replace>
+
+      in <script>
+      1. use push()
+        router.push({
+          path: '/somepage',
+          replace: true
+        })
+
+      2. use replace()
+        router.replace({
+          path: '/somepage',
+        })
+
+      
