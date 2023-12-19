@@ -50,3 +50,11 @@
 
 # 다중 v-model 바인딩
 : 전달인자를 사용하여 다중 바인딩 사용 가능
+
+const isVisibleModalHandler = () => {
+  isVisibleModalHandler.value = !isVisibleModalHandler.value;
+}
+
+$emits.isVisibleModalHandler()
+
+{emits}

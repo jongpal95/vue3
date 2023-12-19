@@ -13,9 +13,12 @@
 		<hr />
 		<h2>textarea value</h2>
 		<!-- 이벤트 핸들러 구현 -->
-		<!-- <textarea :value="textareaValue" @input="event => (textareaValue = event.target.value)" ></textarea> -->
+		<textarea
+			:value="textareaValue"
+			@input="event => (textareaValue = event.target.value)"
+		></textarea>
 		<!-- 양방향 바인딩 -->
-		<textarea v-model="textareaValue"></textarea>
+		<!-- <textarea v-model="textareaValue"></textarea> -->
 		<div>{{ textareaValue }}</div>
 
 		<hr />
