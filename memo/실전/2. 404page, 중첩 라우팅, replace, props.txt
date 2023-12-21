@@ -71,4 +71,10 @@
           path: '/somepage',
         })
 
-      
+
+* ref VS reactive [https://markus.oberlehner.net/blog/vue-3-composition-api-ref-vs-reactive/]
+
+
+## props routing
+: 컴포넌트에서 내장 객체 $route사용 시 특정 url에서만 사용할 수 있게 되어 라우트와 강한 결합을 만들게 됨
+  이러한 사용은 유연성이 제한되므로 props옵션으로 동작을 분리할 수 있음
