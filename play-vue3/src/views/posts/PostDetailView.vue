@@ -1,17 +1,26 @@
 <template>
 	<div>
+		<div class="contianer m-1">
+			<div class="row">
+				<div class="col text-end">author: {{ post?.author }}</div>
+			</div>
+		</div>
+
 		<AppCard>
-			<template v-slot:header>{{ form?.title }}</template>
-			<template v-slot:default>{{ form?.content }}</template>
-			<template v-slot:footer>{{ form?.createdAt }}</template>
+			<template v-slot:header>{{ post?.title }}</template>
+			<template v-slot:default>{{ post?.content }}</template>
+			<template v-slot:footer>{{ post?.createdAt }}</template>
 		</AppCard>
+
 		<hr class="my-4" />
 		<PostController
 			@go-post-list="goPostList"
 			@go-post-edit="goPostEdit"
 			@go-post-next="goPostNext"
 			@go-post-previous="goPostPrevious"
+			@delete-post="deletePost"
 		></PostController>
+
 		<!-- <p>params : {{ $route.params }}</p>
 		<p>query : {{ $route.query }}</p>
 		<p>hash : {{ $route.hash }}</p> -->
@@ -21,22 +30,35 @@
 <script setup>
 import PostController from '@/components/posts/PostController.vue';
 import AppCard from '@/components/AppCard.vue';
+
 import { useRouter } from 'vue-router';
 import { ref, watch } from 'vue';
-import { getPosts, getPostById } from '@/api/post';
+import { getPostById, setPostVisible, getPostByOrder } from '@/api/post';
+import { ScrollToTop } from '@/main';
 
 const props = defineProps({
-	id: Number,
+	id: {
+		type: Number,
+		required: true,
+	},
 });
 
 // const id = useRoute().params.id;
 const router = useRouter();
 
-const form = ref({});
+const post = ref({});
 
-const fetchData = () => {
-	const data = getPostById(props.id);
-	form.value = { ...data };
+const fetchData = async () => {
+	const data = await getPostById(props.id);
+	if (data) {
+		post.value = { ...data };
+	} else {
+		alert('This post is the Last!');
+
+		goPostDetail(props.id - 1);
+	}
+
+	ScrollToTop();
 };
 fetchData();
 
@@ -44,6 +66,7 @@ const goPostList = () => {
 	router.push({
 		name: 'PostList',
 	});
+	ScrollToTop();
 };
 const goPostEdit = () => {
 	router.push({
@@ -52,24 +75,48 @@ const goPostEdit = () => {
 			id: props.id,
 		},
 	});
+
+	ScrollToTop();
 };
 
-const goPostNext = () => {
-	const postCount = getPosts().length;
-	if (props.id === postCount) {
-		alert('This post is Last Post!');
+const goPostNext = async () => {
+	const data = await getPostByOrder('next', props.id);
+
+	if (data === undefined) {
+		alert('Sorry, Try again few minutes later😅');
+		ScrollToTop();
 		return;
 	}
 
-	goPostDetail(props.id + 1);
+	if (data === -1) {
+		alert('This post is the Last!');
+		ScrollToTop();
+		return;
+	}
+
+	goPostDetail(data.id);
 };
-const goPostPrevious = () => {
+const goPostPrevious = async () => {
 	if (props.id === 1) {
-		alert('This post is First Post!');
+		alert('This post is the First!');
+		ScrollToTop();
 		return;
 	}
 
-	goPostDetail(props.id - 1);
+	const data = await getPostByOrder('prev', props.id);
+	if (data === undefined) {
+		alert('Sorry, Try again few minutes later😅');
+		ScrollToTop();
+		return;
+	}
+
+	if (data === -1) {
+		alert('This post is the First!');
+		ScrollToTop();
+		return;
+	}
+
+	goPostDetail(data.id);
 };
 
 const goPostDetail = id => {
@@ -82,6 +129,13 @@ const goPostDetail = id => {
 };
 
 watch(props, () => fetchData());
+
+const deletePost = async () => {
+	const result = await setPostVisible(props.id);
+	if (result) {
+		goPostList();
+	}
+};
 </script>
 
 <style lang="scss" scoped></style>

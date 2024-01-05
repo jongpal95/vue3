@@ -18,7 +18,9 @@
 			<button class="btn btn-outline-primary" @click="clickEdit">Edit</button>
 		</div>
 		<div class="col-auto">
-			<button class="btn btn-outline-danger">Delete</button>
+			<button class="btn btn-outline-danger" @click="clickDelete">
+				Delete
+			</button>
 		</div>
 	</div>
 </template>
@@ -29,6 +31,7 @@ const emit = defineEmits({
 	goPostEdit: 'goPostEdit',
 	goPostNext: 'goPostNext',
 	goPostPrevious: 'goPostPrevious',
+	delPost: 'delPost',
 });
 
 const clickBackToList = () => {
@@ -42,6 +45,10 @@ const clickNext = () => {
 };
 const clickPrevious = () => {
 	emit('goPostPrevious');
+};
+
+const clickDelete = () => {
+	emit('deletePost');
 };
 </script>
 

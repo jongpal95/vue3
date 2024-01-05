@@ -8,10 +8,7 @@
 </template>
 
 <script setup>
-import { useRoute, useRouter } from 'vue-router';
-
-const route = useRoute();
-console.log('route path : ', route.path);
+import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
