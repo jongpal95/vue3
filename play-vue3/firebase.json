@@ -6,23 +6,10 @@
       "**/.*",
       "**/node_modules/**"
     ],
-    "rewrites": [{
-      "source": "**",
-      "destination": "/index.html"
-    }],
-    "headers": [
+    "rewrites": [
       {
         "source": "**",
-        "headers": [
-          {
-            "key": "Access-Control-Allow-Origin",
-            "value": "*"
-          },
-          {
-            "key": "Cache-Control",
-            "value": "no-cache, no-store, must-revalidate, max-age=0"
-          }
-        ]
+        "destination": "/index.html"
       }
     ]
   },
@@ -39,6 +26,20 @@
         ".git",
         "firebase-debug.log",
         "firebase-debug.*.log"
+      ]
+    },
+    {
+      "source": "play-vue-codebase",
+      "codebase": "play-vue-codebase",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "firebase-debug.*.log"
+      ],
+      "predeploy": [
+        "npm --prefix \"$RESOURCE_DIR\" run lint",
+        "npm --prefix \"$RESOURCE_DIR\" run build"
       ]
     }
   ]

@@ -1,5 +1,6 @@
 import * as FIREBASE from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+// import * as APP from '../../play-vue-codebase/src/common/admin';
 
 const Firestore = {
 	db: {},
@@ -21,5 +22,6 @@ export function InitFirebaseApp() {
 
 	Firestore.db = db;
 }
+// console.log(APP.auth);
 
 export { Firestore };

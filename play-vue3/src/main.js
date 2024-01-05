@@ -3,10 +3,13 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from '@/router';
-import { InitFirebaseApp } from './api/firebase.js';
+// import { InitFirebaseApp } from './api/firebase.js';
+//import { GetPostList } from '@/../play-vue-codebase/src/post/readPostList.f.ts';
 
 createApp(App).use(router).mount('#app');
-InitFirebaseApp();
+//InitFirebaseApp();
+
+//console.log(GetPostList());
 
 export function ScrollToTop() {
 	window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
